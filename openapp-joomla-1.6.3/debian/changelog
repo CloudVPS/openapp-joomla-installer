@@ -1,0 +1,5 @@
+openapp-joomla (1.6.3-1) unstable; urgency=low
+
+  * Initial release of openapp-joomla. Installs Joomla 1.6.3.
+
+ -- Mark Schouten <mark@tuxis.nl>  Wed, 22 Jun 2011 16:49:04 +0200

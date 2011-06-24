@@ -1,0 +1,17 @@
+Source: openapp-joomla
+Section: web
+Priority: extra
+Maintainer: Mark Schouten <mark@tuxis.nl>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.9.1
+Homepage: http://www.joomla.org/
+
+Package: openapp-joomla
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, php5-cli, wget | curl, mysql-server, pwgen, apache2-mpm-prefork, libapache2-mod-php5, php5-mysql
+Description: Joomla CMS
+ A Openpanel OpenApp meta-package for Joomla. This does not carry the actual Joomla source,
+ but just makes sure that it is installed and upgraded if necessary. It detects the current
+ version of Joomla and thus can see if you upgraded via the webinterface.
+ .
+ Please see http://www.openpanel.com/openapp/ for more info.
