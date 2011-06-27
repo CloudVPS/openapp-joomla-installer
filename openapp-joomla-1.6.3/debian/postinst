@@ -30,7 +30,7 @@ install_joomla() {
 	PASSWORD=`pwgen -s 10`
 
 	echo "Creating backup of current /var/www in /var/backups/var.www.joomla.tgz"
-	tar zvf /var/backups/var.www.joomla.tgz /var/www/
+	tar zcf /var/backups/var.www.joomla.tgz /var/www/
 
 	echo "Removing data in /var/www"
 	rm -rf /var/www
