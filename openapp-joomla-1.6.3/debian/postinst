@@ -28,6 +28,14 @@ fatal() {
 install_joomla() {
 	MIRROR=http://www.tuxis.nl/uploads/tmp
 	PASSWORD=`pwgen -s 10`
+
+	echo "Creating backup of current /var/www in /var/backups/var.www.joomla.tgz"
+	tar zvf /var/backups/var.www.joomla.tgz /var/www/
+
+	echo "Removing data in /var/www"
+	rm -rf /var/www
+	mkdir /var/www
+
 	[ -x /usr/bin/wget ] && wget -q -O /tmp/joomla-$$.tar.gz ${MIRROR}/joomla-newest.tar.gz
 	[ -f /tmp/joomla-$$.tar.gz ] || /usr/bin/curl -s -o /tmp/joomla-$$.tar.gz ${MIRROR}/joomla-newest.tar.gz
 	if [ $? -eq 0 ]; then
@@ -47,7 +55,10 @@ install_joomla() {
                 [ $? -eq 0 ] || fatal "Unable to prepare ${INSTALLDIR}/configuration.php"
 		cat ${INSTALLDIR}/installation/sql/mysql/joomla.sql | sed -e 's/#__/jos_/g' | mysql --defaults-file=/etc/mysql/debian.cnf joomla || fatal "Unable to add data to the database"
 	fi
+	echo "Fixing permissions on /var/www"
+	chown -R www-data:www-data /var/www
 	rm -rf ${INSTALLDIR}/installation/
+	rm -f ${INSTALLDIR}/configuration.php.tmp
 	rm -f /tmp/joomla-$$.tar.gz
 }
 
@@ -56,6 +67,7 @@ case "$1" in
 	if [ -z $2 ]; then
 		echo "No old version of Joomla detected. Assuming new install"
 		install_joomla
+		/usr/sbin/invoke-rc.d apache2 restart
 		echo "Please run openapp-joomla-passwd if you're not installing this package in an openapp environment."
 	fi
     ;;
