@@ -1,0 +1,3 @@
+
+* Run dh_make --createorig
+* Run dpkg-buildpackage

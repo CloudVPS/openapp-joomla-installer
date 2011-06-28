@@ -1,0 +1,24 @@
+openapp-joomla (1.6.4-1) stable; urgency=low
+
+  * New version of Joomla released:
+    http://www.joomla.org/announcements/release-news/5374-joomla-164-released.html
+
+ -- Mark Schouten <mark@tuxis.nl>  Tue, 28 Jun 2011 10:28:04 +0200
+
+openapp-joomla (1.6.3-2) unstable; urgency=low
+
+  * Restart Apache after install so php actually works after
+    a fresh install
+  * Clear /var/www before installing Joomla. We expect only Joomla
+    in /var/www. But do make a backup of the current /var/www
+  * Fix permissions on /var/www
+  * Fix a typo in openapp-joomla-passwd
+  * Remove ${INSTALLDIR}/configuration.php.tmp after install
+
+ -- Mark Schouten <mark@tuxis.nl>  Mon, 27 Jun 2011 12:21:04 +0200
+
+openapp-joomla (1.6.3-1) unstable; urgency=low
+
+  * Initial release of openapp-joomla. Installs Joomla 1.6.3.
+
+ -- Mark Schouten <mark@tuxis.nl>  Wed, 22 Jun 2011 16:49:04 +0200

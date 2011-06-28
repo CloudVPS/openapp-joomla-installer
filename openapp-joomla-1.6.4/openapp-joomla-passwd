@@ -1,0 +1,31 @@
+#!/bin/sh
+
+
+fatal() {
+    echo "ERROR: $1"
+    [ -f /tmp/joomla-$$.tar.gz ] && rm -f /tmp/joomla-$$.tar.gz
+    exit 1
+}
+
+UID=`/usr/bin/id -u`
+PASSWORD=`pwgen -s 10`
+MYSQL=/usr/bin/mysql
+OPTS="--defaults-file=/etc/mysql/debian.cnf joomla -B -N -e"
+
+QUERY="${MYSQL} ${OPTS}"
+[ $UID -eq 0 ] || fatal "You need to be root to run this"
+[ -z $PASSWORD ] && fatal "We don't have a password. Is pwgen installed?"
+
+MD5_PWD=$(echo -n ${PASSWORD} | md5sum | cut -f 1 -d ' ')
+
+
+if [ -z `${QUERY} "SELECT username FROM jos_users WHERE username = 'admin'";` ]; then
+    ${QUERY} "INSERT INTO jos_users (name, username, email, password, usertype, activation, params) VALUES ('Administrator', 'admin', 'your-email@email.com', '${MD5_PWD}', 'Super Administrator', '', '')" || fatal "Could not add user in jos_users"
+    SU_GROUP=$(${QUERY} "SELECT id FROM jos_usergroups WHERE title = 'Super Users'") || fatal "Could not fetch Super Users groupid"
+    ADMIN_ID=$(${QUERY} "SELECT id FROM jos_users WHERE username = 'admin'") || fatal "Could not fetch adminusers userid"
+    ${QUERY} "INSERT INTO jos_user_usergroup_map (user_id, group_id) VALUES (${ADMIN_ID}, ${SU_GROUP})" || fatal "Could not add admin to the Super Users group"
+else 
+    ${QUERY} "UPDATE jos_users SET password = '${MD5_PWD}' WHERE username = 'admin'" || fatal "Could not change password for admin"
+fi
+
+echo "${PASSWORD} is your new password"
