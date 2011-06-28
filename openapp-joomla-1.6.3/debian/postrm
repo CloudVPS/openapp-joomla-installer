@@ -33,8 +33,11 @@ upgrade_joomla() {
         [ -f /tmp/joomla-$$.tar.gz ] || /usr/bin/curl -s -o /tmp/joomla-$$.tar.gz ${MIRROR}/joomla-${VERSION}.tar.gz
 	if [ $? -eq 0 ]; then
 		cd ${INSTALLDIR} || fatal "Unable to go into directory ${INSTALLDIR}"
-		tar zxvf /tmp/joomla-$$.tar.gz || fatal "Unable to extract Joomla package into ${INSTALLDIR}"
+		tar zxf /tmp/joomla-$$.tar.gz || fatal "Unable to extract Joomla package into ${INSTALLDIR}"
 	fi
+	echo "Fixing permissions on /var/www"
+	chown -R www-data:www-data /var/www
+	chmod 640 ${INSTALLDIR}/configuration.php
 	rm -rf ${INSTALLDIR}/installation/
 	rm -f /tmp/joomla-$$.tar.gz
 }

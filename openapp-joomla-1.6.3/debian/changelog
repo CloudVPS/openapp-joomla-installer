@@ -1,3 +1,10 @@
+openapp-joomla (1.6.3-3) stable; urgency=low
+
+  * Fix permissions after upgrade (upgrade broke the installed version)
+  * Make sure configuration.php is writable after the upgrade
+
+ -- Mark Schouten <mark@tuxis.nl>  Tue, 28 Jun 2011 11:17:04 +0200
+
 openapp-joomla (1.6.3-2) unstable; urgency=low
 
   * Restart Apache after install so php actually works after

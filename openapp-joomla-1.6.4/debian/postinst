@@ -61,6 +61,7 @@ install_joomla() {
 	fi
 	echo "Fixing permissions on /var/www"
 	chown -R www-data:www-data /var/www
+	chmod 640 ${INSTALLDIR}/configuration.php
 	rm -rf ${INSTALLDIR}/installation/
 	rm -f ${INSTALLDIR}/configuration.php.tmp
 	rm -f /tmp/joomla-$$.tar.gz
