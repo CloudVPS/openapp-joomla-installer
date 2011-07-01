@@ -56,7 +56,7 @@ install_joomla() {
 		  sed -e "s#\$password = ''#\$password = '${PASSWORD}'#" | \
 		  sed -e "s#\$db = ''#\$db = 'joomla'#" > ${INSTALLDIR}/configuration.php
                 [ $? -eq 0 ] || fatal "Unable to prepare ${INSTALLDIR}/configuration.php"
-		cat ${INSTALLDIR}/installation/sql/mysql/joomla.sql | sed -e 's/#__/jos_/g' | ${MYSQL} joomla || fatal "Unable to add data to the database"
+		cat ${INSTALLDIR}/installation/sql/mysql/joomla.sql | sed -e 's/#__/jos_/g' | ${MYSQL} ${OPTS} joomla || fatal "Unable to add data to the database"
 		${MYSQL} ${OPTS} joomla -e "CREATE INDEX jos_template_styles(client_id);"
 	fi
 	echo "Fixing permissions on /var/www"
