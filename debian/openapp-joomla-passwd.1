@@ -18,7 +18,7 @@
 .SH NAME
 openapp-joomla-passwd \- (re)set the Joomla admin password
 .SH SYNOPSIS
-.B openapp-joomla-passwd
+.B openapp-joomla-passwd [stdin]
 .SH DESCRIPTION
 This manual page documents briefly the
 .B openapp-joomla-passwd
@@ -29,9 +29,13 @@ command.
 .\" respectively.
 \fBopenapp-joomla-passwd\fP is a program that (re)sets the admin password for OpenApp
 .br
-Joomla installs. It creates a password for you and echoes it on STDOUT.
+Joomla installs. It creates a password for you and echoes it on STDOUT. If you
+.br
+do not want a password to be created for you, add the argument 'stdin'.
 .SH OPTIONS
-This program accepts no arguments.
+This program has one optional argument:
+.br
+ - stdin: Will ask you to enter a password, which will be used to update the Joomla password
 .SH AUTHOR
 openapp-joomla-passwd was written by Mark Schouten.
 .PP

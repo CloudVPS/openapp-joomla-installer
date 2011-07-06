@@ -1,20 +1,20 @@
-#!/bin/sh
+#!/bin/bash
 
 
 fatal() {
     echo "ERROR: $1"
-    [ -f /tmp/joomla-$$.tar.gz ] && rm -f /tmp/joomla-$$.tar.gz
     exit 1
 }
 
-UID=`/usr/bin/id -u`
-PASSWORD=`pwgen -s 10`
+[ -z $1 ] && PASSWORD=`pwgen -s 10`
+[ "$1" = "stdin" ] && read -p "Please enter your password: " PASSWORD
+
 MYSQL=/usr/bin/mysql
 OPTS="--defaults-file=/etc/mysql/debian.cnf joomla -B -N -e"
 
 QUERY="${MYSQL} ${OPTS}"
 [ $UID -eq 0 ] || fatal "You need to be root to run this"
-[ -z $PASSWORD ] && fatal "We don't have a password. Is pwgen installed?"
+[ -z "$PASSWORD" ] && fatal "We don't have a password. Is pwgen installed?"
 
 MD5_PWD=$(echo -n ${PASSWORD} | md5sum | cut -f 1 -d ' ')
 
