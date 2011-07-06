@@ -8,7 +8,8 @@ Homepage: http://www.joomla.org/
 
 Package: openapp-joomla
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, php5-cli, wget | curl, mysql-server, pwgen, apache2-mpm-prefork, libapache2-mod-php5, php5-mysql
+Pre-Depends: wget | curl, pwgen, mysql-client, mysql-server, apache2-mpm-prefork
+Depends: ${shlibs:Depends}, ${misc:Depends}, php5-cli, libapache2-mod-php5, php5-mysql
 Description: Joomla CMS
  A Openpanel OpenApp meta-package for Joomla. This does not carry the actual Joomla source,
  but just makes sure that it is installed and upgraded if necessary. It detects the current
