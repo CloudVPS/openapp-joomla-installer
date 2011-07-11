@@ -22,5 +22,6 @@ Description: Joomla CMS
 
 Package: openapp-joomla
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: openapp-backup
+Depends: ${shlibs:Depends}, ${misc:Depends}, openpanel-openapp-mod-joomla, openapp-joomla-installer
 Description: This will install your Joomla OpenApp Appliance!
