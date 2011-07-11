@@ -6,7 +6,7 @@ Build-Depends: debhelper
 Standards-Version: 3.9.1
 Homepage: http://www.joomla.org/
 
-Package: openapp-joomla
+Package: openapp-joomla-installer
 Architecture: any
 Pre-Depends: wget | curl, pwgen, mysql-client, mysql-server, apache2-mpm-prefork
 Depends: ${shlibs:Depends}, ${misc:Depends}, php5-cli, libapache2-mod-php5, php5-mysql
@@ -19,3 +19,8 @@ Description: Joomla CMS
  install, /var/www will be emptied after a backup has been made into /var/backups/.
  .
  Please see http://www.openpanel.com/openapp/ for more info.
+
+Package: openapp-joomla
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: This will install your Joomla OpenApp Appliance!
