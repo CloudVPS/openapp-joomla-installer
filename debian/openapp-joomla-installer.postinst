@@ -26,7 +26,7 @@ fatal() {
 }
 
 install_joomla() {
-	MIRROR=http://www.tuxis.nl/uploads/tmp
+	MIRROR=http://download.openpanel.com/openapp-files/joomla
 	PASSWORD=`pwgen -s 10`
 
 	MYSQL=/usr/bin/mysql
