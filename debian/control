@@ -4,11 +4,11 @@ Priority: extra
 Maintainer: Mark Schouten <mark@tuxis.nl>
 Build-Depends: debhelper
 Standards-Version: 3.9.1
-Homepage: http://www.joomla.org/
+Homepage: http://www.openpanel.com/openapp/
 
 Package: openapp-joomla-installer
 Architecture: any
-Pre-Depends: wget | curl, pwgen, mysql-client, mysql-server, apache2-mpm-prefork
+Pre-Depends: wget, pwgen, mysql-client, mysql-server, apache2-mpm-prefork
 Depends: ${shlibs:Depends}, ${misc:Depends}, php5-cli, libapache2-mod-php5, php5-mysql
 Description: Joomla CMS
  A Openpanel OpenApp meta-package for Joomla. This does not carry the actual Joomla source,
