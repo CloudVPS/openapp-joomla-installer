@@ -75,6 +75,7 @@ case "$1" in
 	if [ -z $2 ]; then
 		echo "No old version of Joomla detected. Assuming new install"
 		install_joomla
+		/usr/sbin/a2enmod mime rewrite headers expires
 		/usr/sbin/invoke-rc.d apache2 restart
 		echo "Please run openapp-joomla-passwd if you're not installing this package in an openapp environment."
 	fi
