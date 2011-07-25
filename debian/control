@@ -24,4 +24,6 @@ Package: openapp-joomla
 Architecture: any
 Pre-Depends: openapp-backup, openapp-tuning, openapp-joomla-installer
 Depends: ${shlibs:Depends}, ${misc:Depends}, openpanel-openapp-mod-joomla, rsync
+Provides: openapp-app
+Conflicts: openapp-app
 Description: This will install your Joomla OpenApp Appliance!
