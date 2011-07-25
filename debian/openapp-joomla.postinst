@@ -30,6 +30,12 @@ case "$1" in
 				echo "Enabling ${SCRIPT}"
 			done
 		fi
+
+		echo "Identify ourselve to openapp-tuning and run it"
+		mkdir -p /etc/openapp-tuning/
+		echo "joomla" > /etc/openapp-tuning/identity
+		[ -x /usr/sbin/openapp-tuning ] && openapp-tuning joomla start
+
 	;;
 	abort-upgrade|abort-remove|abort-deconfigure|triggered)
     ;;
