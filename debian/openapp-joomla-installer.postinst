@@ -53,6 +53,7 @@ install_joomla() {
 		cat ${INSTALLDIR}/configuration.php.tmp | \
 		  sed -e "s#\$user = ''#\$user = 'joomla'#" | \
 		  sed -e "s#\$password = ''#\$password = '${PASSWORD}'#" | \
+          sed -e "s#public \$log_path = '/var/logs'#public \$log_path = '/var/www/logs'#" |\
 		  sed -e "s#\$db = ''#\$db = 'joomla'#" > ${INSTALLDIR}/configuration.php
                 [ $? -eq 0 ] || fatal "Unable to prepare ${INSTALLDIR}/configuration.php"
 		cat ${INSTALLDIR}/installation/sql/mysql/joomla.sql | sed -e 's/#__/jos_/g' | ${MYSQL} ${OPTS} joomla || fatal "Unable to add data to the database"
