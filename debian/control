@@ -7,7 +7,7 @@ Standards-Version: 3.9.1
 Homepage: http://www.openpanel.com/openapp/
 
 Package: openapp-joomla-installer
-Architecture: any
+Architecture: all
 Pre-Depends: wget, pwgen, mysql-client, mysql-server, apache2-mpm-prefork
 Depends: ${shlibs:Depends}, ${misc:Depends}, php5-cli, libapache2-mod-php5, php5-mysql
 Provides: openapp-app-installer
@@ -23,7 +23,7 @@ Description: Joomla CMS
  Please see http://www.openpanel.com/openapp/ for more info.
 
 Package: openapp-joomla
-Architecture: any
+Architecture: all
 Pre-Depends: openapp-backup, openapp-tuning, openapp-joomla-installer
 Depends: ${shlibs:Depends}, ${misc:Depends}, openpanel-openapp-mod-joomla, rsync, openpanel-openapp-mod-smtp, openpanel-openapp-mod-backup
 Provides: openapp-app
