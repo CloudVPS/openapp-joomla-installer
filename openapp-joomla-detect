@@ -8,12 +8,17 @@ if (count($argv) < 2) {
 
 define('JPATH_BASE', $argv[1]);
 
-if (!file_exists(JPATH_BASE.'/libraries/joomla/version.php')) {
+if (!file_exists(JPATH_BASE.'/libraries/joomla/version.php') && !file_exists(JPATH_BASE.'/libraries/cms/version/version.php')) {
 	echo "Cannot find Joomla in ".JPATH_BASE."\n";
 	exit(1);
 }
 
-include(JPATH_BASE.'/libraries/joomla/version.php');
+if (file_exists(JPATH_BASE.'/libraries/joomla/version.php')) {
+    include(JPATH_BASE.'/libraries/joomla/version.php');
+} else {
+    define('_JEXEC', 1);
+    include(JPATH_BASE.'/libraries/cms/version/version.php');
+}
 
 $version = new JVersion();
 $ret = $version->RELEASE.'.'.$version->DEV_LEVEL;
